@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   useGetProductoByIdQuery,
   useUpdateProductoMutation,
@@ -11,14 +11,14 @@ import {
 import { Categoria } from "@/app/models/Categoria";
 import { Proveedor } from "@/app/models/Proveedor";
 
-interface EditarProductoPageProps {
-  params: { id: string };
+interface Params {
+  id: string;
 }
-export default function EditarProductoPage({
-  params,
-}: EditarProductoPageProps) {
+export default function EditarProductoPage() {
+  const params = useParams() as unknown as Params;
+  const { id } = params;
   const router = useRouter();
-  const { data: producto } = useGetProductoByIdQuery(params.id);
+  const { data: producto } = useGetProductoByIdQuery(id);
   const { data: categorias } = useGetCategoriasQuery(undefined);
   const { data: proveedores } = useGetProveedoresQuery(undefined);
   const [updateProducto] = useUpdateProductoMutation();
