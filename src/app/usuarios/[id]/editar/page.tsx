@@ -1,11 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useGetUsuarioByIdQuery, useUpdateUsuarioMutation } from "../../../../app/state/api";
+import {
+  useGetUsuarioByIdQuery,
+  useUpdateUsuarioMutation,
+} from "../../../../app/state/api";
 import { useRouter, useParams } from "next/navigation";
+interface Params {
+  id: string;
+}
 
 function EditUserPage() {
-  const { id } = useParams();
+  const params = useParams() as unknown as Params;
+  const { id } = params;
   const { data: usuario } = useGetUsuarioByIdQuery(Number(id));
   const [updateUsuario] = useUpdateUsuarioMutation();
   const router = useRouter();
@@ -44,7 +51,10 @@ function EditUserPage() {
           <form onSubmit={handleSubmit} className="px-8 py-6">
             <div className="space-y-6">
               <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="nombre"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Nombre
                 </label>
                 <input
@@ -59,7 +69,10 @@ function EditUserPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -74,7 +87,10 @@ function EditUserPage() {
               </div>
 
               <div>
-                <label htmlFor="rol" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="rol"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Rol
                 </label>
                 <select

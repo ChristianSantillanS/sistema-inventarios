@@ -2,10 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { useUpdateProveedorMutation, useGetProveedorByIdQuery } from "../../../state/api";
+import {
+  useUpdateProveedorMutation,
+  useGetProveedorByIdQuery,
+} from "../../../state/api";
+interface Params {
+  id: string;
+}
 
 export default function EditarProveedorPage() {
-  const { id } = useParams();
+  const params = useParams() as unknown as Params;
+  const { id } = params;
   const { data: proveedor } = useGetProveedorByIdQuery(Number(id));
   const [updateProveedor] = useUpdateProveedorMutation();
 
@@ -41,7 +48,10 @@ export default function EditarProveedorPage() {
           <form onSubmit={handleSubmit} className="px-8 py-6">
             <div className="space-y-6">
               <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="nombre"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Nombre
                 </label>
                 <input
@@ -56,7 +66,10 @@ export default function EditarProveedorPage() {
               </div>
 
               <div>
-                <label htmlFor="contacto" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label
+                  htmlFor="contacto"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >
                   Contacto
                 </label>
                 <input

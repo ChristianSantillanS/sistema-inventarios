@@ -6,9 +6,12 @@ import {
   useUpdateCategoriaMutation,
   useGetCategoriaByIdQuery,
 } from "../../../state/api";
-
+interface Params {
+  id: string;
+}
 export default function EditarCategoriaPage() {
-  const { id } = useParams();
+  const params = useParams() as unknown as Params;
+  const { id } = params;
   const { data: categoria } = useGetCategoriaByIdQuery(Number(id));
   const [updateCategoria] = useUpdateCategoriaMutation();
 

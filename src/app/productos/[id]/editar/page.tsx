@@ -11,11 +11,12 @@ import {
 import { Categoria } from "@/app/models/Categoria";
 import { Proveedor } from "@/app/models/Proveedor";
 
+interface EditarProductoPageProps {
+  params: { id: string };
+}
 export default function EditarProductoPage({
   params,
-}: {
-  params: { id: string };
-}) {
+}: EditarProductoPageProps) {
   const router = useRouter();
   const { data: producto } = useGetProductoByIdQuery(params.id);
   const { data: categorias } = useGetCategoriasQuery(undefined);
